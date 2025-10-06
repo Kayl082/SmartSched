@@ -1,18 +1,38 @@
 import ApplicationLogo from '@/Components/ApplicationLogo';
+
 import { Link } from '@inertiajs/react';
 
 export default function GuestLayout({ children }) {
     return (
-        <div className="flex min-h-screen flex-col items-center bg-gray-100 pt-6 sm:justify-center sm:pt-0">
-            <div>
-                <Link href="/">
-                    <ApplicationLogo className="h-20 w-20 fill-current text-gray-500" />
-                </Link>
-            </div>
+       <section className="min-h-screen flex items-center justify-center p-8">
+  <div
+  className="w-full max-w-4xl bg-white rounded-[35px] overflow-hidden"
+  style={{ boxShadow: "0 0 20px #18bbb0ff" }}
+>
 
-            <div className="mt-6 w-full overflow-hidden bg-white px-6 py-4 shadow-md sm:max-w-md sm:rounded-lg">
-                {children}
+    <div className="flex">
+                
+                {/* Left Section (Form) */}
+                 <div className="hidden sm:block sm:w-1/2 bg-gray-200">
+                    <img
+                        src="/logo-illus.jpg" 
+                        alt="Login Illustration"
+                        className="h-full w-full object-cover"
+                    />
+                </div>
+                
+
+                {/* Right Section (Picture) */}
+               <div className="w-full sm:w-1/2 p-6 flex flex-col justify-center">
+                    <div className="flex justify-center mb-6">
+                        <Link href="/">
+                            <ApplicationLogo className="h-16 w-16 fill-current text-gray-500" />
+                        </Link>
+                    </div>
+                    {children}
+                </div>
             </div>
-        </div>
+             </div>
+        </section>
     );
 }

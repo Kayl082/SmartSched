@@ -4,6 +4,7 @@ import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import GuestLayout from '@/Layouts/GuestLayout';
 import { Head, Link, useForm } from '@inertiajs/react';
+import HeaderBar from '@/Components/HeaderBar';
 
 export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -23,7 +24,7 @@ export default function Register() {
     };
 
     return (
-        <GuestLayout>
+        <><HeaderBar /><GuestLayout>
             <Head title="Register" />
 
             <form onSubmit={submit}>
@@ -38,8 +39,7 @@ export default function Register() {
                         autoComplete="name"
                         isFocused={true}
                         onChange={(e) => setData('name', e.target.value)}
-                        required
-                    />
+                        required />
 
                     <InputError message={errors.name} className="mt-2" />
                 </div>
@@ -55,8 +55,7 @@ export default function Register() {
                         className="mt-1 block w-full"
                         autoComplete="username"
                         onChange={(e) => setData('email', e.target.value)}
-                        required
-                    />
+                        required />
 
                     <InputError message={errors.email} className="mt-2" />
                 </div>
@@ -89,8 +88,7 @@ export default function Register() {
                         className="mt-1 block w-full"
                         autoComplete="new-password"
                         onChange={(e) => setData('password', e.target.value)}
-                        required
-                    />
+                        required />
 
                     <InputError message={errors.password} className="mt-2" />
                 </div>
@@ -98,8 +96,7 @@ export default function Register() {
                 <div className="mt-4">
                     <InputLabel
                         htmlFor="password_confirmation"
-                        value="Confirm Password"
-                    />
+                        value="Confirm Password" />
 
                     <TextInput
                         id="password_confirmation"
@@ -108,16 +105,12 @@ export default function Register() {
                         value={data.password_confirmation}
                         className="mt-1 block w-full"
                         autoComplete="new-password"
-                        onChange={(e) =>
-                            setData('password_confirmation', e.target.value)
-                        }
-                        required
-                    />
+                        onChange={(e) => setData('password_confirmation', e.target.value)}
+                        required />
 
                     <InputError
                         message={errors.password_confirmation}
-                        className="mt-2"
-                    />
+                        className="mt-2" />
                 </div>
 
                 <div className="mt-4 flex items-center justify-end">
@@ -133,6 +126,6 @@ export default function Register() {
                     </PrimaryButton>
                 </div>
             </form>
-        </GuestLayout>
+        </GuestLayout></>
     );
 }
