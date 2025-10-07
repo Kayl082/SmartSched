@@ -197,7 +197,7 @@ export default function AuthenticatedLayout({ header, children }) {
                             <NavLink
                                 href={route('dashboard')}
                                 active={route().current('dashboard')}
-                                className={`gap-3 w-full px-4 py-3 flex items-center transition-colors duration-200 ${
+                                className={`gap-3 w-full px-4 py-3 flex items-center transition-colors duration-200  ${
                                     route().current('dashboard') 
                                         ? 'bg-[#2dd4c7] border-l-4 border-white text-white' 
                                         : 'hover:bg-[#3be8da] text-white'
@@ -337,7 +337,7 @@ export default function AuthenticatedLayout({ header, children }) {
                 </div>
 
                 {/* Main Content Area */}
-                <div className="flex-1 flex flex-col overflow-y-auto">
+                <div className="flex-1 flex flex-col overflow-y-auto ">
                     {header && (
                 <header className="shadow-[0_0_12px_#40d3c8cc] ">
 
