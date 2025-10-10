@@ -4,7 +4,17 @@ import NavLink from '@/Components/NavLink';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
 import { Link, usePage } from '@inertiajs/react';
 import { useState } from 'react';
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { 
+    Bars3Icon, 
+    XMarkIcon,
+    HomeIcon,
+    CalendarDaysIcon,
+    BuildingOfficeIcon,
+    DocumentChartBarIcon,
+    QuestionMarkCircleIcon,
+    ArrowRightOnRectangleIcon,
+    ClipboardDocumentListIcon
+} from "@heroicons/react/24/outline";
 
 
 export default function AuthenticatedLayout({ header, children }) {
@@ -17,36 +27,26 @@ export default function AuthenticatedLayout({ header, children }) {
     const [isCollapsed, setIsCollapsed] = useState(false);
 
     return (
-        <div className="min-h-screen bg-gray-100">
-            <nav className="border-b border-gray-100 bg-white">
-                <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="min-h-screen bg-gray-100">
+            <nav className="border-b-4 border-[#40d3c8] bg-[#cbfffb] shadow-[0_2px_8px_#40d3c84d]">
+                <div className="w-full px-4 sm:px-6 ">
                     <div className="flex h-12 justify-between">
-                        <div className="flex">
-                            <div className="flex shrink-0 items-center">
-                                <Link href="/">
-                                    <ApplicationLogo className="block h-9 w-auto fill-current text-gray-800" />
-                                </Link>
-                            </div>
-
-                            {/*<div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                                <NavLink
-                                    href={route('dashboard')}
-                                    active={route().current('dashboard')}
-                                >
-                                    Dashboard
-                                </NavLink>
-                            </div>*/}
-
+                       <div className="flex items-center -ml-8">
+                            <Link href="/">
+                                <div className="scale-50">
+                                    <ApplicationLogo className="block h-6 w-auto fill-current" />
+                                </div>
+                            </Link>
                         </div>
 
-                        <div className="hidden sm:ms-6 sm:flex sm:items-center">
-                            <div className="relative ms-3">
+                        <div className="hidden sm:flex sm:items-center">
+                            <div className="relative">
                                 <Dropdown>
                                     <Dropdown.Trigger>
                                         <span className="inline-flex rounded-md">
                                             <button
                                                 type="button"
-                                                className="inline-flex items-center rounded-md border border-transparent bg-white px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out hover:text-gray-700 focus:outline-none"
+                                                className="inline-flex items-center rounded-md border border-transparent px-3 py-2 text-sm font-medium leading-4 text-gray-500 transition duration-150 ease-in-out hover:text-gray-700 focus:outline-none"
                                             >
                                                 {user.name}
 
@@ -74,6 +74,7 @@ export default function AuthenticatedLayout({ header, children }) {
                                         </Dropdown.Link>
                                         <Dropdown.Link
                                             href={route('logout')}
+                                             active={route().current('logout')}
                                             method="post"
                                             as="button"
                                         >
@@ -172,10 +173,11 @@ export default function AuthenticatedLayout({ header, children }) {
             <div className="flex h-screen overflow-hidden">
                 {/* Sidebar */}
                 <div
-                    className={`flex bg-white text-black flex-col transition-all duration-300 ${
-                    isCollapsed ? 'w-15' : 'w-64'
+                    className={`flex bg-[#1fa59cff] text-white flex-col transition-all duration-300 rounded-r-[25px] shadow-md shadow-[0_0_12px_#1fa59cff]  ${
+                        isCollapsed ? 'w-16' : 'w-64'
                     }`}
-                >
+                    >
+
                     <button
                     onClick={() => setIsCollapsed(!isCollapsed)}
                     className="px-4 py-2 focus:outline-none"
@@ -188,33 +190,75 @@ export default function AuthenticatedLayout({ header, children }) {
                     </button>
                     
 
-                    {!isCollapsed && (
-                    <div className=''>
+                    <div className='mt-4'>
 
 
-                        <div className="px-4">
+                        <div className="">
                             <NavLink
                                 href={route('dashboard')}
-                                className="text-lg text-black font-semibold"
+                                active={route().current('dashboard')}
+                                className={`gap-3 w-full px-4 py-3 flex items-center transition-colors duration-200  ${
+                                    route().current('dashboard') 
+                                        ? 'bg-[#2dd4c7] border-l-4 border-white text-white' 
+                                        : 'hover:bg-[#3be8da] text-white'
+                                }`}
                             >
-                                Dashboard
+                                <HomeIcon className="h-5 w-5 flex-shrink-0" />
+                                {!isCollapsed && <span>Dashboard</span>}
                             </NavLink>
                         </div>
 
                         {(user.role === 'student' || user.role === 'faculty') && (
                         <>
                             
-                            <div className="px-4">
-                                <NavLink href={route('user.myBookings')}>My Bookings</NavLink>
+                            <div className="">
+                                <NavLink href={route('user.myBookings')}
+                                 active={route().current('user.myBookings')}
+                                  className={`gap-3 w-full px-4 py-3 flex items-center transition-colors duration-200 ${
+                                    route().current('user.myBookings') 
+                                        ? 'bg-[#2dd4c7] border-l-4 border-white text-white' 
+                                        : 'hover:bg-[#3be8da] text-white'
+                                }`}>
+                                    
+                                    <CalendarDaysIcon className="h-5 w-5 flex-shrink-0" />
+                                    {!isCollapsed && <span>My Bookings</span>}
+                                </NavLink>
                             </div>
-                            <div className="px-4">
-                                <NavLink href={route('user.browseRooms')}>Browse Rooms</NavLink>
+                            <div className="">
+                                <NavLink href={route('user.browseRooms')} 
+                                active={route().current('user.browseRooms')}
+                                className={`gap-3 w-full px-4 py-3 flex items-center transition-colors duration-200 ${
+                                    route().current('user.browseRooms') 
+                                        ? 'bg-[#2dd4c7] border-l-4 border-white text-white' 
+                                        : 'hover:bg-[#3be8da] text-white'
+                                }`}>
+                                    <BuildingOfficeIcon className="h-5 w-5 flex-shrink-0" />
+                                    {!isCollapsed && <span>Browse Rooms</span>}
+                                </NavLink>
                             </div>
-                            <div className="px-4">
-                                <NavLink href={route('user.reports')}>Reports</NavLink>
+                            <div className="">
+                                <NavLink href={route('user.reports')} 
+                                active={route().current('user.reports')}
+                                className={`gap-3 w-full px-4 py-3 flex items-center transition-colors duration-200 ${
+                                    route().current('user.reports') 
+                                        ? 'bg-[#2dd4c7] border-l-4 border-white text-white' 
+                                        : 'hover:bg-[#3be8da] text-white'
+                                }`}>
+                                    <DocumentChartBarIcon className="h-5 w-5 flex-shrink-0" />
+                                    {!isCollapsed && <span>Reports</span>}
+                                </NavLink>
                             </div>
-                            <div className="px-4">
-                                <NavLink href={route('user.help')}>Help</NavLink>
+                            <div className="">
+                                <NavLink href={route('user.help')} 
+                                active={route().current('user.help')}
+                                className={`gap-3 w-full px-4 py-3 flex items-center transition-colors duration-200 ${
+                                    route().current('user.help') 
+                                        ? 'bg-[#2dd4c7] border-l-4 border-white text-white' 
+                                        : 'hover:bg-[#3be8da] text-white'
+                                }`}>
+                                    <QuestionMarkCircleIcon className="h-5 w-5 flex-shrink-0" />
+                                    {!isCollapsed && <span>Help</span>}
+                                </NavLink>
                             </div>
                         </>
                         )}
@@ -223,42 +267,81 @@ export default function AuthenticatedLayout({ header, children }) {
 
                         {user.role === 'admin' && (
                         <>
-                            <div className="px-4">
-                                <NavLink href={route('admin.manageBookings')}>Manage Bookings</NavLink>
+                            <div className="">
+                                <NavLink href={route('admin.manageBookings')} 
+                                active={route().current('admin.manageBookings')}
+                                className={`gap-3 w-full px-4 py-3 flex items-center transition-colors duration-200 ${
+                                    route().current('admin.manageBookings') 
+                                        ? 'bg-[#2dd4c7] border-l-4 border-white text-white' 
+                                        : 'hover:bg-[#3be8da] text-white'
+                                }`}>
+                                    <ClipboardDocumentListIcon className="h-5 w-5 flex-shrink-0" />
+                                    {!isCollapsed && <span>Manage Bookings</span>}
+                                </NavLink>
                             </div>
-                            <div className="px-4">
-                                <NavLink href={route('admin.manageRooms')}>Manage Rooms</NavLink>
+                            <div className="">
+                                <NavLink href={route('admin.manageRooms')} 
+                                active={route().current('admin.manageRooms')}
+                                className={`gap-3 w-full px-4 py-3 flex items-center transition-colors duration-200 ${
+                                    route().current('admin.manageRooms') 
+                                        ? 'bg-[#2dd4c7] border-l-4 border-white text-white' 
+                                        : 'hover:bg-[#3be8da] text-white'
+                                }`}>
+                                    <BuildingOfficeIcon className="h-5 w-5 flex-shrink-0" />
+                                    {!isCollapsed && <span>Manage Rooms</span>}
+                                </NavLink>
                             </div>
-                            <div className="px-4">
-                                <NavLink href={route('admin.reports')}>Reports</NavLink>
+                            <div className="">
+                                <NavLink href={route('admin.reports')} 
+                                active={route().current('admin.reports')}
+                                className={`gap-3 w-full px-4 py-3 flex items-center transition-colors duration-200 ${
+                                    route().current('admin.reports') 
+                                        ? 'bg-[#2dd4c7] border-l-4 border-white text-white' 
+                                        : 'hover:bg-[#3be8da] text-white'
+                                }`}>
+                                    <DocumentChartBarIcon className="h-5 w-5 flex-shrink-0" />
+                                    {!isCollapsed && <span>Reports</span>}
+                                </NavLink>
                             </div>
-                            <div className="px-4">
-                                <NavLink href={route('admin.help')}>Help</NavLink>
+                            <div className="">
+                                <NavLink href={route('admin.help')} 
+                                active={route().current('admin.help')}
+                                className={`gap-3 w-full px-4 py-3 flex items-center transition-colors duration-200 ${
+                                    route().current('admin.help') 
+                                        ? 'bg-[#2dd4c7] border-l-4 border-white text-white' 
+                                        : 'hover:bg-[#3be8da] text-white'
+                                }`}>
+                                    <QuestionMarkCircleIcon className="h-5 w-5 flex-shrink-0" />
+                                    {!isCollapsed && <span>Help</span>}
+                                </NavLink>
                             </div>
                         </>
                         )}
 
-                        <div className="px-4">
+                        <div className="mt-4">
                             <ResponsiveNavLink
                                 method="post"
                                 href={route('logout')}
                                 as="button"
+                                className="w-full px-4 py-3 flex items-center gap-3 hover:bg-[#3be8da] transition-colors duration-200 text-white"
                             >
-                                Log Out
+                                <ArrowRightOnRectangleIcon className="h-5 w-5 flex-shrink-0" />
+                                {!isCollapsed && <span>Log Out</span>}
                             </ResponsiveNavLink>
                         </div>
 
 
                     </div>
                     
-                    )}
+                    
                 </div>
 
                 {/* Main Content Area */}
-                <div className="flex-1 flex flex-col overflow-y-auto">
+                <div className="flex-1 flex flex-col overflow-y-auto ">
                     {header && (
-                    <header className="bg-white shadow">
-                        <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+                <header className="shadow-[0_0_12px_#40d3c8cc] ">
+
+                        <div className="w-full px-4 py-6 sm:px-6 lg:px-8">
                         {header}
                         </div>
                     </header>
