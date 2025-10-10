@@ -30,7 +30,7 @@ export default function Dashboard() {
                                         <p className="text-sm text-gray-600">Booking Date: 12th Oct, 2025</p>
                                         <p className="text-sm text-gray-600">Status: Active</p>
                                         <div className="mt-4">
-                                            <button className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">
+                                             <button className="bg-[#017997ff] text-white px-4 py-2 rounded-lg hover:bg-[#0f87a5ff]" >
                                                 View
                                             </button>
                                         </div>
