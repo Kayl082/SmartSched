@@ -180,12 +180,6 @@ export default function Register() {
                     </>
                 )}
 
-
-
-
-
-
-
                 <div className="mt-4">
                     <InputLabel htmlFor="password" value="Password" />
 
