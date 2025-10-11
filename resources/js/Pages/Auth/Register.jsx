@@ -13,6 +13,11 @@ export default function Register() {
         password: '',
         password_confirmation: '',
         role: 'student',
+        school_id: '',
+        course: 'BSCA',
+        year: '1',
+        position: 'Instructor',
+        department: 'BSCS',
     });
 
     const submit = (e) => {
@@ -76,6 +81,110 @@ export default function Register() {
                     </select>
                     <InputError message={errors.role} className="mt-2" />
                 </div>
+
+                {data.role === 'student' && (
+                    <>
+                        <div className="mt-4">
+                            <InputLabel htmlFor="school_id" value="School ID" />
+                            <TextInput
+                                id="school_id"
+                                name="school_id"
+                                placeholder="e.g., 2025-0001"
+                                value={data.school_id || ''}
+                                className="mt-1 block w-full"
+                                onChange={(e) => setData('school_id', e.target.value)}
+                                required
+                            />
+                        </div>
+
+                        <div className="mt-4">
+                            <InputLabel htmlFor="course" value="Course" />
+                            <select
+                                id="course"
+                                value={data.course || ''}
+                                onChange={(e) => setData('course', e.target.value)}
+                                className="mt-1 block w-full rounded-md border-gray-300"
+                                required
+                            >
+                                <option value="BSCA">BS Computer Applications</option>
+                                <option value="BSCS">BS Computer Studies</option>
+                                <option value="BSIT">BS Information Technology</option>
+                                <option value="BSIS">BS Information Systems</option>
+                            </select>
+                        </div>
+
+                        <div className="mt-4">
+                            <InputLabel htmlFor="year" value="Year Level" />
+                            <select
+                                id="year"
+                                value={data.year || ''}
+                                onChange={(e) => setData('year', e.target.value)}
+                                className="mt-1 block w-full rounded-md border-gray-300"
+                                required
+                            >
+                                <option value="1">1st Year</option>
+                                <option value="2">2nd Year</option>
+                                <option value="3">3rd Year</option>
+                                <option value="4">4th Year</option>
+                            </select>
+                        </div>
+                    </>
+                )}
+
+                {data.role === 'faculty' && (
+                    <>
+                        <div className="mt-4">
+                            <InputLabel htmlFor="school_id" value="School ID" />
+                            <TextInput
+                                id="school_id"
+                                name="school_id"
+                                value={data.school_id || ''}
+                                placeholder="e.g., 2025-0001"
+                                className="mt-1 block w-full"
+                                onChange={(e) => setData('school_id', e.target.value)}
+                                required
+                            />
+                        </div>
+
+                        <div className="mt-4">
+                            <InputLabel htmlFor="position" value="Position" />
+                            <select
+                                id="position"
+                                value={data.position || ''}
+                                onChange={(e) => setData('position', e.target.value)}
+                                className="mt-1 block w-full rounded-md border-gray-300"
+                            >
+                                <option value="Instructor">Instructor</option>
+                                <option value="Professor">Professor</option>
+                                <option value="Dean">Dean</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+
+                        <div className="mt-4">
+                            <InputLabel htmlFor="department" value="Department" />
+                            <select
+                                id="department"
+                                value={data.department || ''}
+                                onChange={(e) => setData('department', e.target.value)}
+                                className="mt-1 block w-full rounded-md border-gray-300"
+                                required
+                            >
+                                <option value="BSCA">BS Computer Applications</option>
+                                <option value="BSCS">BS Computer Studies</option>
+                                <option value="BSIT">BS Information Technology</option>
+                                <option value="BSIS">BS Information Systems</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                    </>
+                )}
+
+
+
+
+
+
 
                 <div className="mt-4">
                     <InputLabel htmlFor="password" value="Password" />

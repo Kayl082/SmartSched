@@ -24,6 +24,16 @@ class User extends Authenticatable
         'role',
     ];
 
+    public function student()
+    {
+        return $this->hasOne(Student::class);
+    }
+
+    public function faculty()
+    {
+        return $this->hasOne(Faculty::class);
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -46,4 +56,5 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+    
 }
